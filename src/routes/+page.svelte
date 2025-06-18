@@ -32,7 +32,12 @@
     if (confirm("Are you sure?")) {
       const req = await fetch(`/api/apps/${appId}`, { method: "DELETE", headers: { Authorization: "{{.Config.ApiKey}}" } });
       if (req.ok) {
-        // Remove app from apps array if needed
+        const appElement = document.getElementById(appId);
+        if (appElement) {
+          appElement.remove();
+        }
+      } else {
+        alert("Failed to uninstall the app. Please try again.");
       }
     }
     closeMenu();
