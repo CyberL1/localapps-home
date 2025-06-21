@@ -1,4 +1,4 @@
-import fastify, { FastifyRequest } from "fastify";
+import fastify, { type FastifyRequest } from "fastify";
 
 const app = fastify();
 
