@@ -1,4 +1,7 @@
 name: Home
 parts:
   frontend:
-    src: .
+    src: frontend
+  backend:
+    src: api
+    path: home-api

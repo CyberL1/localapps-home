@@ -30,7 +30,7 @@
 
   async function uninstallApp(appId: string) {
     if (confirm("Are you sure?")) {
-      const req = await fetch(`/api/apps/${appId}`, { method: "DELETE", headers: { Authorization: "{{.Config.ApiKey}}" } });
+      const req = await fetch(`/home-api/apps/${appId}`, { method: "DELETE" });
       if (req.ok) {
         const appElement = document.getElementById(appId);
         if (appElement) {
