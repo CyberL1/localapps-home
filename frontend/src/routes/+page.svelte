@@ -155,7 +155,7 @@
         <div class="top">
           <button class="menu-opener" on:click={(e) => openMenu(e, app.id)}>+</button>
         </div>
-        <a class="info" href={`//${app.id}.{Config.Domain}`} target="_blank">
+        <a class="info" href={`//${app.id}.${page.url.host}`} target="_blank">
         <img class="icon" src={app.icon || "https://placehold.co/60"} alt="App icon" />
         <span class="name">{app.name}</span>
         </a>
