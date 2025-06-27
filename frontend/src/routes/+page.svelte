@@ -2,10 +2,10 @@
   import { page } from "$app/state";
   import { onMount } from "svelte";
 
-  let menuVisible: boolean = false;
-  let menuX: number = 0;
-  let menuY: number = 0;
-  let menuAppId: string = "";
+  let menuVisible = $state(false);
+  let menuX = $state(0);
+  let menuY = $state(0);
+  let menuAppId = $state("");
 
   function openMenu(event: MouseEvent, appId: string) {
     event.stopPropagation();
@@ -153,7 +153,7 @@
     <div class="app" id={app.id}>
       <div class="content">
         <div class="top">
-          <button class="menu-opener" on:click={(e) => openMenu(e, app.id)}>+</button>
+          <button class="menu-opener" onclick={(e) => openMenu(e, app.id)}>+</button>
         </div>
         <a class="info" href={`//${app.id}.${page.url.host}`} target="_blank">
         <img class="icon" src={app.icon || "https://placehold.co/60"} alt="App icon" />
@@ -167,7 +167,7 @@
 
 {#if menuVisible}
   <div class="menu" style="left: {menuX}px; top: {menuY}px;">
-    <button class="item" on:click={() => openApp(menuAppId)}>Open</button>
-    <button class="item" on:click={() => uninstallApp(menuAppId)}>Uninstall</button>
+    <button class="item" onclick={() => openApp(menuAppId)}>Open</button>
+    <button class="item" onclick={() => uninstallApp(menuAppId)}>Uninstall</button>
   </div>
 {/if}
