@@ -156,7 +156,7 @@
           <button class="menu-opener" onclick={(e) => openMenu(e, app.appId)}>+</button>
         </div>
         <a class="info" href={`//${app.appId}.${page.url.host}`} target="_blank">
-        <img class="icon" src={app.icon || "https://placehold.co/60"} alt="App icon" />
+        <img class="icon" src={app.icon ? `/api/icons/apps/${app.icon}` :  "https://placehold.co/60"} alt="App icon" />
         <span class="name">{app.name}</span>
         </a>
       </div>
