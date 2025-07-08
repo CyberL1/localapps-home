@@ -153,9 +153,9 @@
     <div class="app" id={app.id}>
       <div class="content">
         <div class="top">
-          <button class="menu-opener" onclick={(e) => openMenu(e, app.id)}>+</button>
+          <button class="menu-opener" onclick={(e) => openMenu(e, app.appId)}>+</button>
         </div>
-        <a class="info" href={`//${app.id}.${page.url.host}`} target="_blank">
+        <a class="info" href={`//${app.appId}.${page.url.host}`} target="_blank">
         <img class="icon" src={app.icon || "https://placehold.co/60"} alt="App icon" />
         <span class="name">{app.name}</span>
         </a>
