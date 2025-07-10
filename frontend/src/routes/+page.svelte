@@ -1,17 +1,18 @@
 <script lang="ts">
   import { page } from "$app/state";
+  import type { App } from "$lib/types/App";
   import { onMount } from "svelte";
 
   let menuVisible = $state(false);
   let menuX = $state(0);
   let menuY = $state(0);
-  let menuAppId = $state("");
+  let menuApp = $state({} as App);
 
-  function openMenu(event: MouseEvent, appId: string) {
+  function openMenu(event: MouseEvent, app: App) {
     event.stopPropagation();
 
     menuVisible = true;
-    menuAppId = appId;
+    menuApp = app;
 
     const rect = (event.target as HTMLElement).getBoundingClientRect();
     menuX = event.clientX;
@@ -20,7 +21,6 @@
 
   function closeMenu() {
     menuVisible = false;
-    menuAppId = "";
   }
 
   function openApp(appId: string) {
@@ -153,7 +153,7 @@
     <div class="app" id={app.id}>
       <div class="content">
         <div class="top">
-          <button class="menu-opener" onclick={(e) => openMenu(e, app.appId)}>+</button>
+          <button class="menu-opener" onclick={(e) => openMenu(e, app)}>+</button>
         </div>
         <a class="info" href={`//${app.appId}.${page.url.host}`} target="_blank">
         <img class="icon" src={app.icon ? `/api/icons/apps/${app.icon}` :  "https://placehold.co/60"} alt="App icon" />
@@ -167,7 +167,7 @@
 
 {#if menuVisible}
   <div class="menu" style="left: {menuX}px; top: {menuY}px;">
-    <button class="item" onclick={() => openApp(menuAppId)}>Open</button>
-    <button class="item" onclick={() => uninstallApp(menuAppId)}>Uninstall</button>
+    <button class="item" onclick={() => openApp(menuApp.appId)}>Open</button>
+    <button class="item" onclick={() => uninstallApp(menuApp.id)}>Uninstall</button>
   </div>
 {/if}
